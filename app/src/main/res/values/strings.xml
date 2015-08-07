@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Mr.Ray\'s Alarm</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="set_clock">设置闹铃</string>
+    <string name="set_music">设置铃声</string>
+    <string name="tip_musicName">闹铃曲目</string>
+    <string name="tip_add">+</string>
+    <string name="tip_noAlarms">NO\nALARM</string>
+    <string name="tip_stop">停止</string>
+    <string name="sun">日</string>
+    <string name="mon">一</string>
+    <string name="tue">二</string>
+    <string name="wed">三</string>
+    <string name="thur">四</string>
+    <string name="fri">五</string>
+    <string name="sat">六</string>
+    <string name="all">全部</string>
+</resources>

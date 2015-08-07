@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/tip_noAlarms"
+        android:textSize="90sp"
+        android:gravity="center"
+        android:layout_above="@+id/ib_add"
+        android:id="@+id/tv_no_alarm" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/lv_alarm"
+        android:layout_above="@+id/ib_add" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:id="@+id/ib_add"
+        android:layout_alignParentBottom="true"
+        android:text="@string/tip_add"
+        android:textColor="@color/White"
+        android:textSize="50sp"
+        android:background="@color/LightGreen"
+        android:gravity="center"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="1dp"/>
+</RelativeLayout>
