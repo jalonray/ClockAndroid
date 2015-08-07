@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:id="@+id/lv_alarm"
-        android:layout_above="@+id/ib_add" />
+        android:layout_above="@+id/ib_add"
+        android:descendantFocusability="blocksDescendants"/>
     <Button
         android:layout_width="fill_parent"
         android:layout_height="65dp"

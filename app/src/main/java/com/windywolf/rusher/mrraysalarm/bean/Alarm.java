@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Alarm {
 
-
+    // Enum for day of weeks
     public enum Day {
         SUNDAY,
         MONDAY,
@@ -45,17 +45,30 @@ public class Alarm {
         }
     }
 
+    // Alarm id
     private int id;
+    // Only alarm when active is true
     private boolean active = true;
+    // Alarm time
     private Calendar time = Calendar.getInstance();
+    // Alarm days of week
     private Day[] days = {Day.SUNDAY, Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY};
+    // Alarm music path, include to types: ringtone(url) and music(file path)
     private String music;
+    // If vibrate when alarming. Default is true and can't change now;
     private boolean vibrate = true;
+    // Name of clock. Use UTC to make it unique
     private String name = "Clock";
+    // Type of music. True for music and false for ringtone;
     private boolean musicType = true;
+    // Name of music to display;
     private String musicName;
+    // Static string.
     public static String ALARM_ID = "alarm_id";
+    // Static string
     public static String ALARM_NAME = "alarm_name";
+
+    // Static longs
     public static long MILLIS_OF_SECOND = 1000;
     public static long MILLIS_OF_MINUTE = MILLIS_OF_SECOND * 60;
     public static long MILLIS_OF_HOUR = MILLIS_OF_MINUTE * 60;
@@ -73,6 +86,7 @@ public class Alarm {
         return active;
     }
 
+    // Get time string to display, like "00:12"
     public String getTimeString() {
         StringBuilder builder = new StringBuilder();
         if (time.get(Calendar.HOUR_OF_DAY) <= 9) {
@@ -87,6 +101,7 @@ public class Alarm {
         return builder.toString();
     }
 
+    // Get time for calculate.
     public Calendar getTime() {
         if (time.before(Calendar.getInstance())) {
             time.add(Calendar.DAY_OF_MONTH, 1);
@@ -138,6 +153,7 @@ public class Alarm {
         this.musicName = musicName;
     }
 
+    // Set time from string like "00:13"
     public void setTime(String time) {
         String[] timePieces = time.split(":");
         Calendar newTime = Calendar.getInstance();
@@ -151,6 +167,7 @@ public class Alarm {
         this.days = days;
     }
 
+    // Add day of week
     public void addDay(Day day) {
         boolean contains = false;
         for (Day d : getDays()) {
@@ -167,6 +184,7 @@ public class Alarm {
         }
     }
 
+    // Remove day of week
     public void removeDay(Day day) {
         List<Day> result = new LinkedList<>();
         for (Day d : getDays()) {
@@ -192,6 +210,7 @@ public class Alarm {
         this.name = name;
     }
 
+    // Get days string for display. Like "Sun, Mon" or "Every Day"
     public String getRepeatDaysString() {
         StringBuilder daysStringBuilder = new StringBuilder();
         if (getDays().length == Day.values().length) {
@@ -214,6 +233,7 @@ public class Alarm {
         return daysStringBuilder.toString();
     }
 
+    // Get interval message which from now to alarming time.
     public String getNextTimeMessage() {
         long timeDiff = getTime().getTimeInMillis() - System.currentTimeMillis();
         long days = timeDiff / MILLIS_OF_DAY;
@@ -238,6 +258,7 @@ public class Alarm {
         return builder.toString();
     }
 
+    // Get shorts of day of weeks. Ignore "Chinese" =_=
     private String getChineseDayOfWeed(String day){
         switch (day){
             case "Sunday":

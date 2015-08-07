@@ -21,9 +21,15 @@ import java.util.Calendar;
  * Created by Mr.Ray on 15/8/4.
  */
 public class AlarmingActivity extends Activity {
+    // Button for stop
     Button btnStop = null;
+    // Media player to play music
     MediaPlayer mediaPlayer = null;
+    // Alarm to alarm :)
     Alarm alarm = null;
+    // Here is all colors the application has.
+    // I was mean to change color of screen automatically, make it really cool
+    // But I didn't finish it right now :(
     //    int[] allColors = null;
     public boolean isAlarmed = false;
     Vibrator v = null;
@@ -32,6 +38,8 @@ public class AlarmingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Set window flags.
+        // Keep screen on; Show when locked; Turn screen on
         Window w = getWindow();
         w.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
@@ -50,11 +58,13 @@ public class AlarmingActivity extends Activity {
         String minute = calendar.get(Calendar.MINUTE) < 10 ? "0" + calendar.get(Calendar.MINUTE) : String.valueOf(calendar.get(Calendar.MINUTE));
         btnStop.setText(hour + ":" + minute);
 
+        // Get alarm info
         int id = getIntent().getIntExtra(Alarm.ALARM_ID, -1);
         if (id != -1) {
             DatabaseManager manager = DatabaseManager.init(this);
             alarm = manager.getAlarmById(id);
         }
+        // Use reflection to get all colors we have.
 //        try {
 //            Field[] fields = Class.forName(getPackageName() + ".R$color").getDeclaredFields();
 //            allColors = new int[fields.length];
@@ -72,6 +82,7 @@ public class AlarmingActivity extends Activity {
         if (isAlarmed) {
             return;
         }
+        // Play music
         try {
             if (mediaPlayer == null) {
                 mediaPlayer = new MediaPlayer();
@@ -102,6 +113,7 @@ public class AlarmingActivity extends Activity {
             }
         }
 
+        // Vibrate
         v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         if (v.hasVibrator()) {
             long[] patterns = new long[]{0, 100, 500, 600, 700, 800, 900, 1000};
@@ -116,6 +128,7 @@ public class AlarmingActivity extends Activity {
 
     @Override
     public void finish() {
+        // Release media player and vibrator
         if (mediaPlayer != null) {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();
